@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    p.subheading Please reigster your account
+    form(name="register", action="/register", method="post")
+        label Username 
+        input(type="text", name="user", id='user-tf').span4.required
+        label Password
+        input(type="password", name="pass", id='pass-tf').span4.required
+        input(type="submit", value="register")

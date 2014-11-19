@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 Hallo #user
+    ul.user-details
+        li Username ---> #{user.username}
+        li Password ---> #{user.password}
+       
+    a(href='/signout', class='text-center new-account') Sign Out
