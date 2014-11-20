@@ -64,7 +64,6 @@ module.exports = function (passport) {
     }));
 
     router.get('/home', isAuthenticated, function (req, res) {
-        console.log(req);
         if (req.json) {
             res.send("json");
         }
@@ -74,12 +73,6 @@ module.exports = function (passport) {
     });
     router.get('/', function (req, res) {
         res.render('start');
-    });
-    router.get('/test', utils.basicAuth('test', 'test'));
-
-
-    router.get('/rofl', function (req, res) {
-        res.send("test1");
     });
 
 
