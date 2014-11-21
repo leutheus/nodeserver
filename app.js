@@ -10,6 +10,7 @@ var debug = require('debug')('NodeServ');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var mongoose = require('mongoose');
+var cors = require('cors');
 var User = require('./models/user');
 var bcrypt = require('bcrypt');
 mongoose.connect('mongodb://localhost/prototype');
@@ -36,6 +37,8 @@ app.use(expressSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
+
 var routes = require('./routes/index')(passport);
 var users = require('./routes/users');
 
@@ -53,7 +56,7 @@ passport.deserializeUser(function (id, done) {
     });
 });
 var isValidPassword = function (user, password) {
-    console.log(user + " " + password);
+
     if (user.password && password) {
         return bcrypt.compareSync(password, user.password);
     }
@@ -106,6 +109,9 @@ if (app.get('env') === 'development') {
         });
     });
 }
+
+
+
 
 // production error handler
 // no stacktraces leaked to user
